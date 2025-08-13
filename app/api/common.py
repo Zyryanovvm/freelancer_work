@@ -4,13 +4,32 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.db import get_session
-from app.crud.common import (check_exist, create_common_obj,
-                             get_exist_criteria_by_name)
+from app.crud.common import (
+    check_exist,
+    create_common_obj,
+    get_all_objects,
+    get_exist_criteria_by_name,
+)
 from app.db_models.common import Categories, Languages, Statuses
-from app.schemas.common import (CategoriesCreate, CommonDB, LanguagesCreate,
-                                StatusesCreate)
+from app.schemas.common import (
+    CategoriesCreate,
+    CommonDB,
+    LanguagesCreate,
+    StatusesCreate,
+)
 
-router = APIRouter()
+router = APIRouter(prefix="/api/v0")
+
+
+@router.get(
+    "/category/",
+    tags=["Admin methods"],
+    summary="Получение всех категорий",
+    response_model=list[CommonDB],
+)
+async def get_categories(session: AsyncSession = Depends(get_session)):
+    objects = await get_all_objects(Categories, session)
+    return objects
 
 
 @router.post(
