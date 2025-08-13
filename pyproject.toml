@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "freelance-work"
+version = "0.1.0"
+description = ""
+authors = ["zyryanovvm <chel.cska11@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "0.116.1"
+uvicorn = {extras = ["standard"], version = "^0.35.0"}
+python-multipart = "0.0.20"
+pydantic-settings = "2.6.0"
+aiopg = "^1.4.0"
+sqlalchemy = "^2.0.42"
+alembic = "^1.16.4"
+asyncpg = "^0.30.0"
+greenlet = "^3.2.3"
+black = "^25.1.0"
+flake8 = "^7.3.0"
+flake8-pyproject = "^1.2.3"
+isort = "^6.0.1"
+
+
+[tool.flake8]
+max-line-length = 120
+exclude = [".git", "__pycache__", ".venv"]
+inline-quotes = "double"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
